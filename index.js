@@ -29,7 +29,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const ticketRoutes = require('./routes/ticket');
-
+require("dotenv").config();
 const app = express();
 
 // Middlewares
@@ -38,10 +38,7 @@ app.use(express.json());
 
 
 // Conectar a MongoDB Atlas
-mongoose.connect(process.env.MONGODB_URI || environment.URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(() => console.log('MongoDB se conecto!'))
+mongoose.connect(process.env.MONGODB_URI || environment.URI).then(() => console.log('MongoDB se conecto!'))
   .catch(err => console.log('No se pudo conectar', err));
 
 // Usar rutas
